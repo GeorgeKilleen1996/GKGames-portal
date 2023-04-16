@@ -45,11 +45,13 @@ const handleLogin = async () => {
                             <input type="email" class="w-full rounded bg-dark-secondary h-12 px-2 border border-dark-primary mt-2 text-white" v-model="email">
                         </div>
                         <div class="w-full">
-                            <input
+                            <button
                             type="submit"
-                            class="w-full h-12 rounded bg-dark-primary text-white text-sm tracking-wide mt-2"
-                            :value="loading ? 'Loading' : 'Sign In'"
-                            :disabled="loading" />
+                            class="w-full h-12 rounded bg-dark-primary text-white text-sm tracking-wide mt-2 transition-all"
+                            :disabled="loading">
+                                <span v-if="loading"><i class="fas fa-spinner fa-pulse"></i></span>
+                                <span v-else>Sign In</span>
+                            </button>
                         </div>
                     </div>
                 </form>
