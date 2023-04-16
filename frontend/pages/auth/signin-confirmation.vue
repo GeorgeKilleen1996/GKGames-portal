@@ -1,11 +1,14 @@
 <script setup>
+const counter = ref(2);
 const router = useRouter();
-const client = useSupabaseClient();
-const user = useSupabaseUser();
 
 watchEffect(() => {
-    if (user.value) {
-        router.push('/');
+    if (counter.value > 0) {
+        setTimeout(() => {
+            counter.value--;
+        }, 1000);
+    } else {
+        router.push('/user/');
     }
 })
 </script>
@@ -23,8 +26,8 @@ watchEffect(() => {
             </div>
             <!-- Card Body -->
             <div class="w-full mt-4 flex flex-col">
-                <div class="text-2xl tracking-wide font-semibold text-center text-white">Check Your Email</div>
-                <div class="text-sm tracking-wide font-light text-center text-dark-highlight pt-2">We need to verify it's you! Check your email, you should've recieved a magic link to login!</div>
+                <div class="text-2xl tracking-wide font-semibold text-center text-white">Sign In Successful!</div>
+                <div class="text-sm tracking-wide font-light text-center text-dark-highlight pt-2">You have successfully signed in, you will be redirected in... {{ counter }}</div>
             </div>
         </div>
     </div>

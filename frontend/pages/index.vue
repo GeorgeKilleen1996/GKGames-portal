@@ -8,7 +8,13 @@ const email = ref('');
 const handleLogin = async () => {
     try {
         loading.value = true
-        const { error } = await supabase.auth.signInWithOtp({ email: email.value })
+        const { error } = await supabase.auth.signInWithOtp(
+            { 
+                email: email.value,
+                options: {
+                    emailRedirectTo: 'http://localhost:3000/auth/signin-confirmation',
+                },
+            })
         if (error) throw error
         router.push('/auth/signin')
     } catch (error) {
