@@ -5,7 +5,7 @@ const user = useSupabaseUser();
 
 watchEffect(() => {
     if (user.value) {
-        router.push('/dashboard')
+        // router.push('/dashboard')
     }
 })
 </script>
