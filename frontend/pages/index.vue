@@ -27,8 +27,8 @@ const handleLogin = async () => {
 </script>
 <template>
     <div class="w-full h-screen flex justify-center items-center bg-dark-main relative overflow-hidden">
-        <CommonMovingBlobComponent class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:w-[25rem] w-[20rem] h-[17.5rem] md:h-[15rem]"/>
-        <div class="p-10 py-14 rounded-lg bg-dark-tertiary flex flex-col md:w-[25rem] w-[22.5rem] shadow-sm border border-dark-card z-10 h-[25rem]">
+        <CommonMovingBlobComponent class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:w-[25rem] w-[20rem] h-[15rem] md:h-[15rem]"/>
+        <div class="p-10 py-14 rounded-lg bg-dark-tertiary flex flex-col md:w-[25rem] w-[22.5rem] shadow-sm border border-dark-card z-10 h-[22.5rem]">
             <!-- Card Header -->
             <div class="w-full h-14 flex justify-start items-center">
                 <!-- Icon -->
