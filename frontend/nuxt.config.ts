@@ -7,4 +7,16 @@ export default defineNuxtConfig({
             autoprefixer: {},
         },
     },
+    modules: ['@nuxtjs/supabase'],
+    app: {
+        head: {
+            title: 'GKGames',
+            script: [
+                {
+                    src: 'https://kit.fontawesome.com/9828d37bfe.js',
+                    crossorigin: 'anonymous'
+                }
+            ],
+        },
+    },
 })
