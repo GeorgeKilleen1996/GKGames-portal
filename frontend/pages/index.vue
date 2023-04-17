@@ -65,9 +65,9 @@ const handleLogin = async () => {
             <!-- Additional Links -->
             <div class="w-full mt-4 flex flex-col justify-center text-center gap-2">
                 <!-- Forgotten Password -->
-                <NuxtLink class="text-xs text-dark-highlight cursor-pointer hover:underline hover:text-[#E94560] transition-all">Forgotten Password?</NuxtLink>
+                <!-- <NuxtLink class="text-xs text-dark-highlight cursor-pointer hover:underline hover:text-[#E94560] transition-all">Forgotten Password?</NuxtLink> -->
                 <!-- Sign Up -->
-                <NuxtLink class="text-xs text-dark-highlight cursor-pointer hover:underline hover:text-[#E94560] transition-all">Not Registered? Sign Up Here</NuxtLink>
+                <!-- <NuxtLink class="text-xs text-dark-highlight cursor-pointer hover:underline hover:text-[#E94560] transition-all">Not Registered? Sign Up Here</NuxtLink> -->
             </div>
         </div>
     </div>
