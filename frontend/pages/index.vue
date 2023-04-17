@@ -34,7 +34,7 @@ const handleLogin = async () => {
                 <!-- Icon -->
                 <div class="w-14 h-14 relative flex justify-center items-center">
                     <div class="w-14 h-14 rounded-full bg-dark-primary opacity-10 absolute"></div>
-                    <div class="tracking-widest font-semibold text-dark-primary text-lg">GK</div>
+                    <div class="tracking-widest font-semibold text-dark-primary text-lg"><i class="fas fa-bolt fa-xl"></i></div>
                 </div>
                 <!-- Company Title -->
                 <div class="text-3xl text-white tracking-widest pl-4 font-light">

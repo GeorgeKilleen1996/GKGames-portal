@@ -23,7 +23,7 @@ const logOut = async () => {
                 <!-- Logo -->
                 <div class="w-16 h-16 relative flex justify-center items-center">
                     <div class="w-12 h-12 rounded-full bg-dark-primary opacity-10 absolute"></div>
-                    <div class="tracking-widest font-semibold text-dark-primary text-lg">GK</div>
+                    <div class="tracking-widest font-semibold text-dark-primary text-lg"><i class="fas fa-bolt fa-lg"></i></div>
                 </div>
                 <!-- Links -->
                 <div class="w-full h-full flex items-center justify-center">
