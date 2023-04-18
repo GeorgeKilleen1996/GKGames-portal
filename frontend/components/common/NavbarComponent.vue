@@ -76,6 +76,24 @@ export default  {
                     text: 'Dashboard',
                     page: ''
                 },
+                {
+                    to: '/admin/orders',
+                    icon: 'fas fa-truck-fast',
+                    text: 'Orders',
+                    page: 'orders'
+                },
+                {
+                    to: '/admin/inventory',
+                    icon: 'fas fa-cubes',
+                    text: 'Inventory',
+                    page: 'inventory'
+                },
+                {
+                    to: '/admin/analytics',
+                    icon: 'fas fa-chart-simple',
+                    text: 'Analytics',
+                    page: 'analytics'
+                },
             ] 
         }
     },
