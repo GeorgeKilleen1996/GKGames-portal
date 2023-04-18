@@ -3,15 +3,21 @@ const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 const router = useRouter();
 
-// Getting whether the user is logged in or not
-const isLoggedIn = computed(() => {
-    return user.value !== null;
+const isLoggedIn = ref(false);
+
+watchEffect(() => {
+    if (user.value) {
+        isLoggedIn.value = true;
+        router.push('/admin/');
+    } else {
+        isLoggedIn.value = false;
+        router.push('/auth/login');
+    }
 })
 
 const logOut = async () => {
     try {
         await supabase.auth.signOut();
-        router.push('/');
     } catch (error) {
         alert(error.error_description || error.message)
     }

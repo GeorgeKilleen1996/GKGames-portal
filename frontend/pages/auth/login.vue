@@ -19,7 +19,6 @@ const handleLogin = async () => {
             }
         )
         if (error) throw error
-        router.push('/admin/')
     } catch (error) {
         alert(error.error_description || error.message)
     } finally {
