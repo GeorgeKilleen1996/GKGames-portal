@@ -1,5 +1,4 @@
 <script setup>
-const router = useRouter();
 const supabase = useSupabaseClient();
 
 const loading = ref(false);
@@ -9,7 +8,6 @@ const email = ref('');
 const password = ref('');
 
 const handleLogin = async () => {
-    // alert(password);
     try {
         loading.value = true
         const { error } = await supabase.auth.signInWithPassword(
