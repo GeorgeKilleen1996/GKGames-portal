@@ -9,6 +9,10 @@ export default defineNuxtConfig({
     },
     modules: ['@nuxtjs/supabase'],
     app: {
+        pageTransition: {
+            name: 'page',
+            mode: 'out-in'
+        },
         head: {
             title: 'GKGames',
             script: [
@@ -19,4 +23,7 @@ export default defineNuxtConfig({
             ],
         },
     },
+    plugins: [
+        '~/plugins/tippy.ts',
+    ],
 })
