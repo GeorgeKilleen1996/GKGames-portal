@@ -23,7 +23,11 @@ const props = defineProps({
 
 const router = useRouter();
 
-const currentPage = router.currentRoute.value.path.split('/')[2];
+const currentPage = ref(router.currentRoute.value.path.split('/')[2]);
+
+watchEffect(() => {
+    currentPage.value = router.currentRoute.value.path.split('/')[2];
+})
 
 </script>
 <template>

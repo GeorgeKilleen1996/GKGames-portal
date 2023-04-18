@@ -4,7 +4,6 @@ import 'tippy.js/animations/shift-toward.css';
 
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
-const router = useRouter();
 
 const isLoggedIn = ref(false);
 
