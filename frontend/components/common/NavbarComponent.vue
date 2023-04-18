@@ -1,4 +1,7 @@
 <script setup>
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/shift-toward.css';
+
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 const router = useRouter();
@@ -54,7 +57,7 @@ const logOut = async () => {
                 <CommonNavigationLink v-for="item in navItems" :to="item.to" :icon="item.icon" :text="item.text" :page="item.page" />
             </div>
             <div class="w-full h-14 flex justify-center items-center">
-                <div class="w-10 h-10 rounded-lg bg-transparent hover:bg-zinc-800 transition-all cursor-pointer flex justify-center items-center">
+                <div class="w-10 h-10 rounded-lg bg-transparent hover:bg-zinc-800 transition-all cursor-pointer flex justify-center items-center" v-tippy="{ content: 'Account Settings'}">
                     <i class="fas fa-user-gear text-dark-highlight"></i>
                 </div>
             </div>
