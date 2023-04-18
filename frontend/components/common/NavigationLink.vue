@@ -27,7 +27,7 @@ const currentPage = router.currentRoute.value.path.split('/')[2];
 
 </script>
 <template>
-    <NuxtLink class="w-10 h-10 rounded-lg transition-all cursor-pointer flex justify-center items-center mt-4" :class="{'bg-zinc-800': currentPage == '', 'bg-transparent hover:bg-zinc-800': currentPage != ''}" v-tippy="{ content: props.text}">
-        <i :class="[{'text-dark-highlight': currentPage != props.page, 'text-dark-primary': currentPage == ''}, props.icon]"></i>
+    <NuxtLink :to="props.to" class="w-10 h-10 rounded-lg transition-all cursor-pointer flex justify-center items-center mt-4" :class="{'bg-zinc-800': currentPage == props.page, 'bg-transparent hover:bg-zinc-800': currentPage != props.page}" v-tippy="{ content: props.text}">
+        <i :class="[{'text-dark-highlight': currentPage != props.page, 'text-dark-primary': currentPage == props.page}, props.icon]"></i>
     </NuxtLink>
 </template>
