@@ -8,4 +8,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
     const pathSuffix = to.fullPath.split('/')[1];
 
+    if(!user.value && pathSuffix != 'auth'){
+        router.push('/auth/login');
+    }
 })
