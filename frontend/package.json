@@ -14,5 +14,8 @@
     "nuxt": "^3.4.0",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.3.1"
+  },
+  "dependencies": {
+    "vue-tippy": "^6.0.0"
   }
 }
