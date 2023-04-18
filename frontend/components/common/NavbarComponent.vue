@@ -5,6 +5,8 @@ const router = useRouter();
 
 const isLoggedIn = ref(false);
 
+const currentPage = router.currentRoute.value.path.split('/')[2];
+
 watchEffect(() => {
     if (user.value) {
         isLoggedIn.value = true;
@@ -28,7 +30,7 @@ const logOut = async () => {
     <div>
         <!-- Top Navbar -->
         <div class="w-full h-14 bg-dark-main flex justify-center fixed top-0 z-50 border-b border-dark-primary">
-            <div class="w-full max-w-[80rem] h-full">
+            <div class="w-full max-w-[80rem] h-full md:px-0 px-4">
                 <div class="w-full h-full flex items-center justify-between">
                     <!-- Logo -->
                     <div class="w-full h-full relative flex justify-center items-center" v-if="!isLoggedIn">
@@ -37,7 +39,6 @@ const logOut = async () => {
                     </div>
                     <!-- Logged In Components -->
                     <div class="w-full h-full flex items-center justify-end" v-if="isLoggedIn">
-                        <!-- <NuxtLink class="text-sm text-dark-highlight cursor-pointer hover:text-[#E94560] transition-all" v-if="!isLoggedIn">Contact Us</NuxtLink> -->
                         <NuxtLink class="text-sm text-dark-highlight cursor-pointer hover:text-[#E94560] transition-all" @click="logOut()">Sign Out</NuxtLink>
                     </div>
                 </div>
@@ -51,11 +52,15 @@ const logOut = async () => {
                     <div class="tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-pink-600 text-md"><i class="fas fa-bolt fa-lg"></i></div>
                 </div>
             </div>
-            <div class="w-full h-[calc(100vh-7rem)]">
-
+            <div class="w-full h-[calc(100vh-7rem)] flex flex-col items-center">
+                <div class="w-10 h-10 rounded-lg transition-all cursor-pointer flex justify-center items-center mt-4" :class="{'bg-zinc-800': currentPage == '', 'bg-transparent hover:bg-zinc-800': currentPage != ''}">
+                    <i class="fas fa-house" :class="{'text-dark-highlight': currentPage != '', 'text-dark-primary': currentPage == ''}"></i>
+                </div>
             </div>
-            <div class="w-full h-14">
-
+            <div class="w-full h-14 flex justify-center items-center">
+                <div class="w-10 h-10 rounded-lg bg-transparent hover:bg-zinc-800 transition-all cursor-pointer flex justify-center items-center">
+                    <i class="fas fa-user-gear text-dark-highlight"></i>
+                </div>
             </div>
         </div>
     </div>
