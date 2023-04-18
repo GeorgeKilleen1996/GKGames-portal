@@ -3,16 +3,19 @@ const router = useRouter();
 const supabase = useSupabaseClient();
 
 const loading = ref(false);
+const error = ref(false);
+const success = ref(false);
 const email = ref('');
 const password = ref('');
 
 const handleLogin = async () => {
+    // alert(password);
     try {
         loading.value = true
         const { error } = await supabase.auth.signInWithPassword(
             {
-                email: email,
-                password: password
+                email: email.value,
+                password: password.value
             }
         )
         if (error) throw error
@@ -27,8 +30,8 @@ const handleLogin = async () => {
 </script>
 <template>
     <div class="w-full h-screen flex justify-center items-center bg-dark-main relative overflow-hidden">
-        <CommonMovingBlobComponent class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:w-[25rem] w-[20rem] h-[15rem] md:h-[15rem]"/>
-        <div class="p-10 py-14 rounded-lg bg-dark-tertiary flex flex-col md:w-[25rem] w-[22.5rem] shadow-sm border border-dark-card z-10 h-[22.5rem]">
+        <CommonMovingBlobComponent class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:w-[25rem] w-[14rem] h-[14rem] md:h-[15rem]"/>
+        <div class="p-10 py-14 rounded-lg bg-dark-tertiary flex flex-col md:w-[25rem] w-[22.5rem] shadow-sm border border-dark-card z-10 h-[30rem]">
             <!-- Card Header -->
             <div class="w-full h-14 flex justify-start items-center">
                 <!-- Icon -->
