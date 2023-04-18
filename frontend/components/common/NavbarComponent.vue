@@ -11,10 +11,8 @@ const isLoggedIn = ref(false);
 watchEffect(() => {
     if (user.value) {
         isLoggedIn.value = true;
-        router.push('/admin/');
     } else {
         isLoggedIn.value = false;
-        router.push('/auth/login');
     }
 })
 

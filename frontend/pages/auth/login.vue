@@ -1,5 +1,7 @@
 <script setup>
 const supabase = useSupabaseClient();
+const router = useRouter();
+const user = useSupabaseUser();
 
 const loading = ref(false);
 const error = ref(false);
@@ -23,6 +25,14 @@ const handleLogin = async () => {
         loading.value = false
     }
 }
+
+watchEffect(() => {
+    if (user.value) {
+        router.push('/admin/');
+    } else {
+        router.push('/auth/login');
+    }
+})
 
 </script>
 <template>
