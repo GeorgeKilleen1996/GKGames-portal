@@ -4,19 +4,19 @@ const supabase = useSupabaseClient();
 
 const loading = ref(false);
 const email = ref('');
+const password = ref('');
 
 const handleLogin = async () => {
     try {
         loading.value = true
-        const { error } = await supabase.auth.signInWithOtp(
-            { 
-                email: email.value,
-                options: {
-                    emailRedirectTo: 'http://localhost:3000/auth/signin-confirmation',
-                },
-            })
+        const { error } = await supabase.auth.signInWithPassword(
+            {
+                email: email,
+                password: password
+            }
+        )
         if (error) throw error
-        router.push('/auth/signin')
+        router.push('/admin/')
     } catch (error) {
         alert(error.error_description || error.message)
     } finally {
@@ -50,6 +50,11 @@ const handleLogin = async () => {
                             <label for="" class="text-dark-highlight tracking-tightest text-sm font-light">Email Address</label>
                             <input type="email" class="w-full rounded bg-dark-secondary h-12 px-2 border border-dark-primary mt-2 text-white" v-model="email">
                         </div>
+                        <!-- Password -->
+                        <div class="w-full">
+                            <label for="" class="text-dark-highlight tracking-tightest text-sm font-light">Your Password</label>
+                            <input type="password" class="w-full rounded bg-dark-secondary h-12 px-2 border border-dark-primary mt-2 text-white" v-model="password">
+                        </div>
                         <div class="w-full">
                             <button
                             type="submit"
@@ -65,7 +70,7 @@ const handleLogin = async () => {
             <!-- Additional Links -->
             <div class="w-full mt-4 flex flex-col justify-center text-center gap-2">
                 <!-- Forgotten Password -->
-                <!-- <NuxtLink class="text-xs text-dark-highlight cursor-pointer hover:underline hover:text-[#E94560] transition-all">Forgotten Password?</NuxtLink> -->
+                <NuxtLink class="text-xs text-dark-highlight cursor-pointer hover:underline hover:text-[#E94560] transition-all">Forgotten Password?</NuxtLink>
                 <!-- Sign Up -->
                 <!-- <NuxtLink class="text-xs text-dark-highlight cursor-pointer hover:underline hover:text-[#E94560] transition-all">Not Registered? Sign Up Here</NuxtLink> -->
             </div>
