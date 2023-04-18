@@ -28,7 +28,7 @@ const logOut = async () => {
     <div>
         <!-- Top Navbar -->
         <div class="w-full h-14 bg-dark-main flex justify-center fixed top-0 z-50 border-b border-dark-primary">
-            <div class="w-5/6 max-w-[80rem] h-full">
+            <div class="w-full max-w-[80rem] h-full">
                 <div class="w-full h-full flex items-center justify-between">
                     <!-- Logo -->
                     <div class="w-full h-full relative flex justify-center items-center" v-if="!isLoggedIn">
