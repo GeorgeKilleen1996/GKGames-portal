@@ -3,8 +3,10 @@ const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 const router = useRouter();
 
-//Getting whether the user is logged in...
-const isLoggedIn = computed(() => user.value !== null);
+// Getting whether the user is logged in or not
+const isLoggedIn = computed(() => {
+    return user.value !== null;
+})
 
 const logOut = async () => {
     try {
@@ -33,7 +35,7 @@ const logOut = async () => {
                 <!-- Sign In -->
                 <div class="w-full h-full flex items-center justify-end">
                     <NuxtLink class="text-sm text-dark-highlight cursor-pointer hover:text-[#E94560] transition-all" v-if="!isLoggedIn">Contact Us</NuxtLink>
-                    <NuxtLink class="text-sm text-dark-highlight cursor-pointer hover:text-[#E94560] transition-all" v-if="isLoggedIn" @click="logOut()">Sign Out</NuxtLink>
+                    <NuxtLink class="text-sm text-dark-highlight cursor-pointer hover:text-[#E94560] transition-all" v-else @click="logOut()">Sign Out</NuxtLink>
                 </div>
             </div>
         </div>

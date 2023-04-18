@@ -7,8 +7,17 @@ export default defineNuxtRouteMiddleware((to, from) => {
     const router = useRouter();
 
     const pathSuffix = to.fullPath.split('/')[1];
+    console.log(user.value);
 
-    if(!user.value && pathSuffix != 'auth'){
-        router.push('/auth/login');
+    if(!user.value){
+        //console.log('not logged in')
+        if(pathSuffix == '' || pathSuffix != 'auth'){
+            return navigateTo('/auth/login');
+        }
+    } else {
+        //console.log('logged in')
+        if(pathSuffix == '' || pathSuffix == 'auth'){
+            return navigateTo('/admin/');
+        }
     }
 })
