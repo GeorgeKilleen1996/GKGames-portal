@@ -5,8 +5,6 @@ const router = useRouter();
 
 const isLoggedIn = ref(false);
 
-const currentPage = router.currentRoute.value.path.split('/')[2];
-
 watchEffect(() => {
     if (user.value) {
         isLoggedIn.value = true;
@@ -53,9 +51,7 @@ const logOut = async () => {
                 </div>
             </div>
             <div class="w-full h-[calc(100vh-7rem)] flex flex-col items-center">
-                <div class="w-10 h-10 rounded-lg transition-all cursor-pointer flex justify-center items-center mt-4" :class="{'bg-zinc-800': currentPage == '', 'bg-transparent hover:bg-zinc-800': currentPage != ''}">
-                    <i class="fas fa-house" :class="{'text-dark-highlight': currentPage != '', 'text-dark-primary': currentPage == ''}"></i>
-                </div>
+                <CommonNavigationLink v-for="item in navItems" :to="item.to" :icon="item.icon" :text="item.text" :page="item.page" />
             </div>
             <div class="w-full h-14 flex justify-center items-center">
                 <div class="w-10 h-10 rounded-lg bg-transparent hover:bg-zinc-800 transition-all cursor-pointer flex justify-center items-center">
@@ -65,3 +61,20 @@ const logOut = async () => {
         </div>
     </div>
 </template>
+<script>
+export default  {
+    name:  'NavbarComponent' ,
+    data() {
+        return {
+            navItems: [
+                {
+                    to: '/admin/',
+                    icon: 'fas fa-house',
+                    text: 'Dashboard',
+                    page: ''
+                },
+            ] 
+        }
+    },
+}
+</script>
