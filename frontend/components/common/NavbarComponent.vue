@@ -49,6 +49,9 @@ const logOut = async () => {
                             {{ breadcrumbs }}
                         </div>
                         <div class="w-full h-full flex justify-end items-center">
+                            <div class="w-10 h-10 rounded-lg bg-transparent hover:bg-zinc-800 transition-all cursor-pointer flex justify-center items-center relative mr-2" v-tippy="{ content: 'Notifications'}">
+                                <i class="fas fa-bell text-dark-highlight"></i>
+                            </div>
                             <div class="w-10 h-10 flex justify-center items-center relative">
                                 <div class="w-10 h-10 rounded-full bg-dark-primary opacity-10 absolute"></div>
                                 <div class="tracking-widest font-semibold text-dark-primary text-md">{{ userInitial }}</div>
