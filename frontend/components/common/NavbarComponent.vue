@@ -124,13 +124,13 @@ export default  {
                     to: '/admin/ebay-integration',
                     icon: 'fas fab fa-ebay',
                     text: 'eBay',
-                    page: 'ebay'
+                    page: 'ebay-integration'
                 },
                 {
                     to: '/admin/facebook-integration',
                     icon: 'fas fab fa-facebook',
                     text: 'Facebook Marketplace',
-                    page: 'ebay'
+                    page: 'facebook-integration'
                 },
             ] 
         }
