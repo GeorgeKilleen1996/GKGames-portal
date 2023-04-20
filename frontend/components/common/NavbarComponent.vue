@@ -9,7 +9,10 @@ const router = useRouter();
 const isLoggedIn = ref(false);
 const accountSettings = ref(false);
 
+const breadcrumbs = ref((router.currentRoute.value.path.split('/')[2] == '') ? 'Dashboard' : router.currentRoute.value.path.split('/')[2].replace('-', ' '));
+
 watchEffect(() => {
+    breadcrumbs.value = (router.currentRoute.value.path.split('/')[2] == '') ? 'Dashboard' : router.currentRoute.value.path.split('/')[2].replace('-', ' ');
     if (user.value) {
         isLoggedIn.value = true;
     } else {
@@ -32,7 +35,7 @@ const logOut = async () => {
     <div>
         <!-- Top Navbar -->
         <div class="w-full h-14 bg-dark-main flex justify-center fixed top-0 z-50 border-b border-dark-primary">
-            <div class="w-full max-w-[80rem] h-full md:px-0 px-4">
+            <div class="w-full h-full md:px-0 px-4 ml-14">
                 <div class="w-full h-full flex items-center justify-between">
                     <!-- Logo -->
                     <div class="w-full h-full relative flex justify-center items-center" v-if="!isLoggedIn">
@@ -40,7 +43,11 @@ const logOut = async () => {
                         <div class="tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-pink-600 text-md"><i class="fas fa-bolt fa-lg"></i></div>
                     </div>
                     <!-- Logged In Components -->
-                    <div class="w-full h-full flex items-center justify-end" v-if="isLoggedIn">
+                    <div class="w-full h-full flex items-center justify-between px-4" v-if="isLoggedIn">
+                        <div class="w-full h-full border border-red-500 flex justify-start items-center text-dark-highlight capitalize">
+                            {{ breadcrumbs }}
+                        </div>
+                        <div class="w-full h-full border border-red-500 flex justify-end items-center"></div>
                         <!-- <NuxtLink class="text-sm text-dark-highlight cursor-pointer hover:text-[#E94560] transition-all" @click="logOut()">Sign Out</NuxtLink> -->
                     </div>
                 </div>
