@@ -10,6 +10,7 @@ const isLoggedIn = ref(false);
 const accountSettings = ref(false);
 
 const breadcrumbs = ref((router.currentRoute.value.path.split('/')[2] == '') ? 'Dashboard' : router.currentRoute.value.path.split('/')[2].replace('-', ' '));
+const userInitial = ref(user.value.email.charAt(0).toUpperCase());
 
 watchEffect(() => {
     breadcrumbs.value = (router.currentRoute.value.path.split('/')[2] == '') ? 'Dashboard' : router.currentRoute.value.path.split('/')[2].replace('-', ' ');
@@ -44,11 +45,15 @@ const logOut = async () => {
                     </div>
                     <!-- Logged In Components -->
                     <div class="w-full h-full flex items-center justify-between px-4" v-if="isLoggedIn">
-                        <div class="w-full h-full border border-red-500 flex justify-start items-center text-dark-highlight capitalize">
+                        <div class="w-full h-full flex justify-start items-center text-dark-highlight capitalize">
                             {{ breadcrumbs }}
                         </div>
-                        <div class="w-full h-full border border-red-500 flex justify-end items-center"></div>
-                        <!-- <NuxtLink class="text-sm text-dark-highlight cursor-pointer hover:text-[#E94560] transition-all" @click="logOut()">Sign Out</NuxtLink> -->
+                        <div class="w-full h-full flex justify-end items-center">
+                            <div class="w-10 h-10 flex justify-center items-center relative">
+                                <div class="w-10 h-10 rounded-full bg-dark-primary opacity-10 absolute"></div>
+                                <div class="tracking-widest font-semibold text-dark-primary text-md">{{ userInitial }}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
