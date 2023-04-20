@@ -21,6 +21,7 @@ watchEffect(() => {
 const logOut = async () => {
     try {
         await supabase.auth.signOut();
+        accountSettings.value = false;
     } catch (error) {
         alert(error.error_description || error.message)
     }
@@ -40,7 +41,7 @@ const logOut = async () => {
                     </div>
                     <!-- Logged In Components -->
                     <div class="w-full h-full flex items-center justify-end" v-if="isLoggedIn">
-                        <NuxtLink class="text-sm text-dark-highlight cursor-pointer hover:text-[#E94560] transition-all" @click="logOut()">Sign Out</NuxtLink>
+                        <!-- <NuxtLink class="text-sm text-dark-highlight cursor-pointer hover:text-[#E94560] transition-all" @click="logOut()">Sign Out</NuxtLink> -->
                     </div>
                 </div>
             </div>
@@ -57,8 +58,33 @@ const logOut = async () => {
                 <CommonNavigationLink v-for="item in navItems" :to="item.to" :icon="item.icon" :text="item.text" :page="item.page" />
             </div>
             <div class="w-full h-14 flex justify-center items-center">
-                <div class="w-10 h-10 rounded-lg bg-transparent hover:bg-zinc-800 transition-all cursor-pointer flex justify-center items-center" v-tippy="{ content: 'Account Settings'}">
+                <div class="w-10 h-10 rounded-lg bg-transparent hover:bg-zinc-800 transition-all cursor-pointer flex justify-center items-center relative" v-tippy="{ content: 'Account Settings'}" @click="accountSettings = !accountSettings">
                     <i class="fas fa-user-gear text-dark-highlight"></i>
+                </div>
+                <div class="grid grid-cols-1 grid-rows-5 bg-dark-main rounded-lg absolute bottom-12 -right-[8rem] gap-2 border border-dark-primary overflow-hidden" v-if="accountSettings">
+                    <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4">
+                        <i class="fa-solid fa-circle-user text-sm px-2"></i>
+                        Account
+                    </div>
+                    <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4 relative">
+                        <i class="fa-solid fa-moon text-sm px-2"></i>
+                        Dark Mode
+                        <div class="w-[0.5rem] h-[0.5rem] rounded-full flex justify-center items-center bg-dark-primary blur-sm absolute right-4">
+                        </div>
+                        <i class="fas fa-circle text-dark-primary text-[0.5rem] pl-4"></i>
+                    </div>
+                    <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4">
+                        <i class="fa-solid fa-sun text-sm px-2"></i>
+                        Light Mode
+                    </div>
+                    <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4">
+                        <i class="fa-solid fa-database text-sm px-2"></i>
+                        Database
+                    </div>
+                    <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4" @click="logOut();">
+                        <i class="fa-solid fa-arrow-right-from-bracket text-sm px-2"></i>
+                        Sign Out
+                    </div>
                 </div>
             </div>
         </div>
