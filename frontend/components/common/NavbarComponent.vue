@@ -7,6 +7,7 @@ const supabase = useSupabaseClient();
 const router = useRouter();
 
 const isLoggedIn = ref(false);
+const accountSettings = ref(false);
 
 watchEffect(() => {
     if (user.value) {
@@ -92,6 +93,18 @@ export default  {
                     icon: 'fas fa-chart-simple',
                     text: 'Analytics',
                     page: 'analytics'
+                },
+                {
+                    to: '/admin/ebay-integration',
+                    icon: 'fas fab fa-ebay',
+                    text: 'eBay',
+                    page: 'ebay'
+                },
+                {
+                    to: '/admin/facebook-integration',
+                    icon: 'fas fab fa-facebook',
+                    text: 'Facebook Marketplace',
+                    page: 'ebay'
                 },
             ] 
         }
