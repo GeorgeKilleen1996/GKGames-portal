@@ -13,6 +13,8 @@ const props = defineProps({
         required: true
     },
 });
+
+const sales = ref(0);
 </script>
 <template>
     <div class="w-full h-full bg-dark-main rounded-lg border border-dark-primary drop-shadow-md relative p-2">
@@ -24,5 +26,8 @@ const props = defineProps({
         <div class="h-10 rounded-lg flex justify-start items-center px-2 text-dark-highlight">
             {{ props.title }}
         </div>
+        <!-- Card Graph data -->
+        <!-- Card Sales number -->
+        <div class="text-dark-primary text-6xl tracking-tightest font-semibold absolute bottom-2 right-2">{{ sales }}</div>
     </div>
 </template>
