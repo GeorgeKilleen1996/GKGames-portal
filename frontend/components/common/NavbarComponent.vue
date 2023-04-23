@@ -72,7 +72,9 @@ const logOut = async () => {
                     </div>
                 </div>
                 <div class="w-full h-[calc(100vh-7rem)] flex flex-col items-center">
-                    <CommonNavigationLink v-for="item in navItems" :to="item.to" :icon="item.icon" :text="item.text" :page="item.page" />
+                    <CommonFadeInComponent v-for="item in navItems" :delay="item.fade_in_delay" >
+                        <CommonNavigationLink :to="item.to" :icon="item.icon" :text="item.text" :page="item.page" />
+                    </CommonFadeInComponent>
                 </div>
                 <div class="w-full h-14 flex justify-center items-center">
                     <div class="w-10 h-10 rounded-lg bg-transparent hover:bg-zinc-800 transition-all cursor-pointer flex justify-center items-center relative" v-tippy="{ content: 'Account Settings'}" @click="accountSettings = !accountSettings">
@@ -118,37 +120,43 @@ export default  {
                     to: '/admin/',
                     icon: 'fas fa-house',
                     text: 'Dashboard',
-                    page: ''
+                    page: '',
+                    fade_in_delay: 0.5
                 },
                 {
                     to: '/admin/orders',
                     icon: 'fas fa-truck-fast',
                     text: 'Orders',
-                    page: 'orders'
+                    page: 'orders',
+                    fade_in_delay: 0.75
                 },
                 {
                     to: '/admin/inventory',
                     icon: 'fas fa-cubes',
                     text: 'Inventory',
-                    page: 'inventory'
+                    page: 'inventory',
+                    fade_in_delay: 1
                 },
                 {
                     to: '/admin/analytics',
                     icon: 'fas fa-chart-simple',
                     text: 'Analytics',
-                    page: 'analytics'
+                    page: 'analytics',
+                    fade_in_delay: 1.25
                 },
                 {
                     to: '/admin/ebay-integration',
                     icon: 'fas fab fa-ebay',
                     text: 'eBay',
-                    page: 'ebay-integration'
+                    page: 'ebay-integration',
+                    fade_in_delay: 1.5
                 },
                 {
                     to: '/admin/facebook-integration',
                     icon: 'fas fab fa-facebook',
                     text: 'Facebook Marketplace',
-                    page: 'facebook-integration'
+                    page: 'facebook-integration',
+                    fade_in_delay: 1.75
                 },
             ] 
         }
