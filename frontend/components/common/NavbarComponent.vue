@@ -10,12 +10,13 @@ const isLoggedIn = ref(false);
 const accountSettings = ref(false);
 
 const breadcrumbs = ref((router.currentRoute.value.path.split('/')[2] == '') ? 'Dashboard' : router.currentRoute.value.path.split('/')[2].replace('-', ' '));
-const userInitial = ref(user.value.email.charAt(0).toUpperCase());
+const userInitial = ref('');
 
 watchEffect(() => {
     breadcrumbs.value = (router.currentRoute.value.path.split('/')[2] == '') ? 'Dashboard' : router.currentRoute.value.path.split('/')[2].replace('-', ' ');
     if (user.value) {
         isLoggedIn.value = true;
+        userInitial.value = user.value.email.charAt(0).toUpperCase();
     } else {
         isLoggedIn.value = false;
         router.push('/auth/login');
@@ -62,47 +63,49 @@ const logOut = async () => {
             </div>
         </div>
         <!-- Side Navbar -->
-        <div class="w-14 h-full bg-dark-main flex flex-col justify-between fixed top-0 left-0 border-r border-dark-primary z-50" v-if="isLoggedIn">
-            <div class="w-full h-14">
-                <div class="w-full h-full relative flex justify-center items-center">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-pink-600 opacity-10 absolute"></div>
-                    <div class="tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-pink-600 text-md"><i class="fas fa-bolt fa-lg"></i></div>
-                </div>
-            </div>
-            <div class="w-full h-[calc(100vh-7rem)] flex flex-col items-center">
-                <CommonNavigationLink v-for="item in navItems" :to="item.to" :icon="item.icon" :text="item.text" :page="item.page" />
-            </div>
-            <div class="w-full h-14 flex justify-center items-center">
-                <div class="w-10 h-10 rounded-lg bg-transparent hover:bg-zinc-800 transition-all cursor-pointer flex justify-center items-center relative" v-tippy="{ content: 'Account Settings'}" @click="accountSettings = !accountSettings">
-                    <i class="fas fa-user-gear text-dark-highlight"></i>
-                </div>
-                <div class="grid grid-cols-1 grid-rows-5 bg-dark-main rounded-lg absolute bottom-12 -right-[8rem] gap-2 border border-dark-primary overflow-hidden" v-if="accountSettings">
-                    <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4">
-                        <i class="fa-solid fa-circle-user text-sm px-2"></i>
-                        Account
+        <Transition name="left-to-right" mode="out-in">
+            <div class="w-14 h-full bg-dark-main flex flex-col justify-between fixed top-0 left-0 border-r border-dark-primary z-50" v-if="isLoggedIn">
+                <div class="w-full h-14">
+                    <div class="w-full h-full relative flex justify-center items-center">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-pink-600 opacity-10 absolute"></div>
+                        <div class="tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-pink-600 text-md"><i class="fas fa-bolt fa-lg"></i></div>
                     </div>
-                    <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4 relative">
-                        <i class="fa-solid fa-moon text-sm px-2"></i>
-                        Dark Mode
-                        <div class="w-[0.5rem] h-[0.5rem] rounded-full flex justify-center items-center bg-dark-primary blur-sm absolute right-4">
+                </div>
+                <div class="w-full h-[calc(100vh-7rem)] flex flex-col items-center">
+                    <CommonNavigationLink v-for="item in navItems" :to="item.to" :icon="item.icon" :text="item.text" :page="item.page" />
+                </div>
+                <div class="w-full h-14 flex justify-center items-center">
+                    <div class="w-10 h-10 rounded-lg bg-transparent hover:bg-zinc-800 transition-all cursor-pointer flex justify-center items-center relative" v-tippy="{ content: 'Account Settings'}" @click="accountSettings = !accountSettings">
+                        <i class="fas fa-user-gear text-dark-highlight"></i>
+                    </div>
+                    <div class="grid grid-cols-1 grid-rows-5 bg-dark-main rounded-lg absolute bottom-12 -right-[8rem] gap-2 border border-dark-primary overflow-hidden" v-if="accountSettings">
+                        <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4">
+                            <i class="fa-solid fa-circle-user text-sm px-2"></i>
+                            Account
                         </div>
-                        <i class="fas fa-circle text-dark-primary text-[0.5rem] pl-4"></i>
-                    </div>
-                    <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4">
-                        <i class="fa-solid fa-sun text-sm px-2"></i>
-                        Light Mode
-                    </div>
-                    <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4">
-                        <i class="fa-solid fa-database text-sm px-2"></i>
-                        Database
-                    </div>
-                    <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4" @click="logOut();">
-                        <i class="fa-solid fa-arrow-right-from-bracket text-sm px-2"></i>
-                        Sign Out
+                        <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4 relative">
+                            <i class="fa-solid fa-moon text-sm px-2"></i>
+                            Dark Mode
+                            <div class="w-[0.5rem] h-[0.5rem] rounded-full flex justify-center items-center bg-dark-primary blur-sm absolute right-4">
+                            </div>
+                            <i class="fas fa-circle text-dark-primary text-[0.5rem] pl-4"></i>
+                        </div>
+                        <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4">
+                            <i class="fa-solid fa-sun text-sm px-2"></i>
+                            Light Mode
+                        </div>
+                        <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4">
+                            <i class="fa-solid fa-database text-sm px-2"></i>
+                            Database
+                        </div>
+                        <div class="w-full h-8 text-dark-highlight flex justify-start items-center text-sm hover:bg-zinc-800 cursor-pointer transition-all pr-4" @click="logOut();">
+                            <i class="fa-solid fa-arrow-right-from-bracket text-sm px-2"></i>
+                            Sign Out
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </Transition>
     </div>
 </template>
 <script>
@@ -152,3 +155,14 @@ export default  {
     },
 }
 </script>
+
+<style scoped>
+.left-to-right-enter-active,
+.left-to-right-leave-active {
+  transition: all 0.3s ease;
+}
+.left-to-right-enter-from,
+.left-to-right-leave-to {
+  transform: translateX(-3.5rem);
+}
+</style>
